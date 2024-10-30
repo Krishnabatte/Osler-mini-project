@@ -2,10 +2,16 @@ provider "aws" {
   region = var.aws_region
 }
 
+# Create a Key Pair for SSH access
+resource "aws_key_pair" "ec2_key" {
+  key_name   = "jenkins-flask-key"
+  public_key = file("~/.ssh/id_rsa.pub")  # Replace with the path to your public SSH key
+}
+
 resource "aws_instance" "jenkins_server" {
   ami                         = "ami-0ddc798b3f1a5117e" # Amazon Linux 2 AMI
   instance_type               = var.instance_type
-  key_name                    = var.key_name
+ # key_name                    = var.key_name
  # vpc_security_group_ids      = var.vpc_security_group_ids
 
   user_data = <<-EOF

@@ -5,7 +5,7 @@ provider "aws" {
 # Create a Key Pair for SSH access
 resource "aws_key_pair" "ec2_key" {
   key_name   = "jenkins-flask-key"
-  public_key = file("~/.ssh/id_rsa.pub")  # Replace with the path to your public SSH key
+  public_key = file("C:/Users/chand/.ssh/id_rsa.pub")  # Replace with the path to your public SSH key
 }
 
 resource "aws_instance" "jenkins_server" {

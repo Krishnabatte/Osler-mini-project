@@ -7,7 +7,7 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  description = "SSH Key Name"
+  description = "SSH_key"
 }
 
 variable "vpc_security_group_ids" {

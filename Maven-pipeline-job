@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from version control
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the project using Maven
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Run TestNG tests
+                sh 'mvn test'
+            }
+        }
+
+        stage('Publish TestNG Results') {
+            steps {
+                // Publish TestNG test results using the TestNG plugin
+                publishTestNGResults testResultsPattern: '**/test-output/testng-results.xml'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Archive all test results and reports, regardless of the outcome
+            archiveArtifacts artifacts: '**/test-output/*', allowEmptyArchive: true
+        }
+    }
+}

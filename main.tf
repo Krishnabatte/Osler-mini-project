@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "jenkins_server" {
-  ami                         = "ami-06b21ccaeff8cd686" # Amazon Linux 2 AMI
+  ami                         = "ami-0ddc798b3f1a5117e" # Amazon Linux 2 AMI
   instance_type               = var.instance_type
   key_name                    = var.key_name
  # vpc_security_group_ids      = var.vpc_security_group_ids
